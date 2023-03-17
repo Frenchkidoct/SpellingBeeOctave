@@ -35,6 +35,9 @@ public class SpellingBee {
     public static final int DICTIONARY_SIZE = 143091;
     public static final String[] DICTIONARY = new String[DICTIONARY_SIZE];
 
+    private String mletters;
+    private String oldLetters;
+
     public SpellingBee(String letters) {
         this.letters = letters;
         words = new ArrayList<String>();
@@ -45,9 +48,24 @@ public class SpellingBee {
     //  that will find the substrings recursively.
     public void generate() {
         // YOUR CODE HERE — Call your recursive method!
+        makeWords("", letters);
+
+    }
+    public void makeWords(String mletters, String oldLetters) {
+        if (mletters.isEmpty()) {
+            return;
+        }
+        for (int i = 0; i < mletters.length(); i++) {
+            words.add(oldLetters);
+            {
+                makeWords(mletters.substring(0, i) + mletters.substring(i + 1), oldLetters
+                        + mletters.substring(i, i + 1));
+            }
+        }
     }
 
-    // TODO: Apply mergesort to sort all words. Do this by calling ANOTHER method
+
+        // TODO: Apply mergesort to sort all words. Do this by calling ANOTHER method
     //  that will find the substrings recursively.
     public void sort() {
         // YOUR CODE HERE
